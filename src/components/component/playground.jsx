@@ -73,6 +73,18 @@ export function Playground() {
     }
 
     const searchClicked = () => {
+        if (search === "") {
+            toast.error("Please enter search text", {
+                action: {
+                    label: "Close",
+                    onClick: () => {
+                        toast.dismiss();
+                    }
+                },
+            })
+            return;
+        }
+
         const searchResults = text.match(new RegExp(search, "gi"));
         if (searchResults) {
             toast.success(`${searchResults.length} matches found`, {
@@ -95,6 +107,7 @@ export function Playground() {
             })
             setSearchResults([]);
         }
+        console.log(searchResults);
     }
 
     return (
